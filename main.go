@@ -1,26 +1,30 @@
-package main 
+package main
 
-import "fmt" 
+import (
+	"fmt" 
+	"strings"
+	"sort"
+)
 
 func main (){
-  var ages = [4]int{11,8,16,14}
-  nomes :=[4]string{"Rosa", "Amy", "Jack", "miguel"}
-  fmt.Println(ages)
-  fmt.Println(nomes)
-//   slice
-var score = []int{100, 200, 300,}
-fmt.Println(score)
-rangeOne := score[1:3]
-fmt.Println(rangeOne)
-rangeTwo := score[2:]
-fmt.Println(rangeTwo)
-rangeTree := score[:3]
-fmt.Println(rangeTree)
+  greenting := "Hello my friends!"
+  fmt.Println(strings.Contains(greenting,"friends"))
+fmt.Println(strings.ReplaceAll(greenting, "Hello" , "Hi"))
+fmt.Println(strings.ToUpper(greenting))
+fmt.Println(strings.Index(greenting, "my"))
+fmt.Println(strings.Split(greenting, "friends"))
+ages := []int {50, 80 ,60}
+sort.Ints(ages)
+fmt.Println(ages)
+index := sort.SearchInts(ages, 50)
+fmt.Println(index)
+names := []string{"Caruzo", "Cris", "Julius"}
+sort.Strings(names)
+fmt.Println(names)
+fmt.Println(sort.SearchStrings(names, "Cris"))
 
-var superherois = []string{"Deadpool", "Homem Aranha", "Hulk", "Thor"}
-fmt.Println(superherois)
-superherois = append(superherois, "Homem de Ferro")
-fmt.Println(superherois, len(superherois), cap(superherois))
+
+
 
 
 }
