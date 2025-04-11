@@ -2,38 +2,53 @@ package main
 
 import (
     "fmt"
-    
 )
 
 func main() {
     var saldo float32
-    var saldo2 float32
-    var banco int
-    var soma float32
-    var saldo3 float32
-    var subtraçao float32
-    fmt.Println("insira o valor inicial")
+    fmt.Println("Insira o valor inicial:")
     fmt.Scan(&saldo)
-    fmt.Println("voce deseja sacar(1) ou depositar(2) ou encerrar a sessao(3)?")
-    fmt.Scan(&banco)
-    if banco == 2 {
-        fmt.Println("voce deseja depositar que quantia?")
-        fmt.Scan(&saldo2)
-        soma = saldo + saldo2
-        fmt.Println("o seu saldo total é", soma)
 
+    escolherOperacao(&saldo)
+}
+
+func escolherOperacao(saldo *float32) {
+    var opcao int
+    fmt.Println("Você deseja sacar (1), depositar (2) ou encerrar a sessão (3)?")
+    fmt.Scan(&opcao)
+
+    switch opcao {
+    case 1:
+        sacar(saldo)
+    case 2:
+        depositar(saldo)
+    case 3:
+        encerrar()
+    default:
+        fmt.Println("Opção inválida.")
     }
-    if banco == 1 {
-        fmt.Println("voce deseja sacar que quantia?")
-        fmt.Scan(&saldo3)
-        subtraçao = saldo - saldo3
-        fmt.Println("o seu saldo total é", subtraçao)
+}
+
+func depositar(saldo *float32) {
+    var valor float32
+    fmt.Println("Qual valor deseja depositar?")
+    fmt.Scan(&valor)
+    *saldo += valor
+    fmt.Println("Seu saldo atual é:", *saldo)
+}
+
+func sacar(saldo *float32) {
+    var valor float32
+    fmt.Println("Qual valor deseja sacar?")
+    fmt.Scan(&valor)
+    if valor > *saldo {
+        fmt.Println("Saldo insuficiente.")
+    } else {
+        *saldo -= valor
+        fmt.Println("Seu saldo atual é:", *saldo)
     }
-    if banco == 3 {
-        fmt.Println("sessao encerrada")
-    }
-    
+}
 
-
-
+func encerrar() {
+    fmt.Println("Sessão encerrada.")
 }
